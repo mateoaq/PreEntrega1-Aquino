@@ -36,6 +36,12 @@ La libreria de firebase completamente necesaria para realizar las conexciones co
 
 Y React Router Dom para poder navegar por la aplicación.
 
+## Deploy
+
+Podes verlo en netlify
+
+[Netlify](https://marvelous-tiramisu-971ab4.netlify.app/)
+
 ## Demo
 
 ![image](https://github.com/mateoaq/TrabajoCoderHouse/blob/main/public/grabacion%20proyecto%20final.gif)
