@@ -38,7 +38,7 @@ Y React Router Dom para poder navegar por la aplicación.
 
 ## Demo
 
-[image](https://github.com/mateoaq/TrabajoCoderHouse/blob/main/public/grabacion%20proyecto%20final.gif)
+![image](https://github.com/mateoaq/TrabajoCoderHouse/blob/main/public/grabacion%20proyecto%20final.gif)
 
 ## License
 
