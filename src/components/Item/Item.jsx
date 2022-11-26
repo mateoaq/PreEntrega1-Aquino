@@ -6,15 +6,22 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 import { ItemCount } from "../ItemCount/ItemCount";
 
 export const Item = ({ data }) => {
   const [stockSelected, setStockSelected] = useState(0);
+  const context = useContext(CartContext);
 
   const onAddStock = (value) => {
     setStockSelected(value);
+  };
+
+  const addToCart = () => {
+    context.addItems({ ...data, stock: stockSelected });
+    setStockSelected(0);
   };
   return (
     <Card sx={{ width: 345 }}>
@@ -35,7 +42,11 @@ export const Item = ({ data }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <ItemCount stock={stockSelected} onAdd={onAddStock} />
+        <ItemCount
+          stock={stockSelected}
+          onAdd={onAddStock}
+          addToCart={addToCart}
+        />
       </CardActions>
     </Card>
   );

@@ -1,12 +1,19 @@
 import { Box, CardMedia, Chip, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import { ItemCount } from "../ItemCount/ItemCount";
 
 export const ItemDetail = ({ item }) => {
   const [stockSelected, setStockSelected] = useState(0);
+  const context = useContext(CartContext);
 
   const onAddStock = (value) => {
     setStockSelected(value);
+  };
+
+  const addToCart = () => {
+    context.addItems({ ...item, stock: stockSelected });
   };
   return (
     <Grid container xs={12} justifyContent="center">
@@ -44,7 +51,11 @@ export const ItemDetail = ({ item }) => {
           </Typography>
         </Box>
         <Box width={185}>
-          <ItemCount stock={stockSelected} onAdd={onAddStock} />
+          <ItemCount
+            stock={stockSelected}
+            onAdd={onAddStock}
+            addToCart={addToCart}
+          />
         </Box>
       </Grid>
       <Grid item marginX={10} marginTop={5}>

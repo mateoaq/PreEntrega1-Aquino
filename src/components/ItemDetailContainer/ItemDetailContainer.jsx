@@ -1,21 +1,18 @@
-import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
+import { doc, getDoc } from "firebase/firestore/lite";
 import { useParams } from "react-router-dom";
-import { mockData } from "../../data/MOCK_DATA";
+import { collectionProducts } from "../../firebase/firebaseConfig";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import { ItemDetailLoader } from "../Loader/ItemDetailLoader";
 
 export const ItemDetailContainer = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [item, setItem] = useState();
+  const [item, setItem] = useState(undefined);
   const params = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setItem(mockData.find((item) => item.id === parseInt(params.id)));
-      setIsLoading(false);
-    }, 2000);
+    const ref = doc(collectionProducts, params.id);
+    getDoc(ref).then((res) => setItem({ id: res.id, ...res.data() }));
   }, [params]);
 
   return (

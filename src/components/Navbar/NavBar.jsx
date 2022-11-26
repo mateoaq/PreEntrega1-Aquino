@@ -11,27 +11,21 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { CartWidget } from "../CartWidget";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
-const pages = ["Principal", "Postre", "Bebida"];
+const pages = ["principal", "postre", "bebida"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -99,7 +93,7 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <IconButton onClick={() => navigate("cart")} sx={{ p: 0 }}>
               <CartWidget />
             </IconButton>
           </Box>
